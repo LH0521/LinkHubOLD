@@ -68,20 +68,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedRace = Array.from(filterElements.race).filter(el => el.checked).map(el => el.value);
         const selectedSexuality = Array.from(filterElements.sexuality).filter(el => el.checked).map(el => el.value);
 
-        const filteredlinks = links.filter(link => {
-            const tagsAsString = link.search.tags.join(' ').toLowerCase();
-            const matchesSearch =
-                link.name.toLowerCase().includes(searchTerm) ||
-                link.link.toLowerCase().includes(searchTerm) ||
-                tagsAsString.includes(searchTerm);
+        const filteredlinks = links
+            .map((link, originalIndex) => ({ link, originalIndex }))
+            .filter(({ link }) => {
+                const tagsAsString = link.search.tags.join(' ').toLowerCase();
+                const matchesSearch =
+                    link.name.toLowerCase().includes(searchTerm) ||
+                    link.link.toLowerCase().includes(searchTerm) ||
+                    tagsAsString.includes(searchTerm);
 
-            const matchesSource = !selectedSources.length || selectedSources.includes(link.flags.source);
-            const matchesBody = !selectedBody.length || selectedBody.includes(link.search.body);
-            const matchesRace = !selectedRace.length || selectedRace.includes(link.search.race);
-            const matchesSexuality = !selectedSexuality.length || selectedSexuality.includes(link.search.sexuality);
+                const matchesSource = !selectedSources.length || selectedSources.includes(link.flags.source);
+                const matchesBody = !selectedBody.length || selectedBody.includes(link.search.body);
+                const matchesRace = !selectedRace.length || selectedRace.includes(link.search.race);
+                const matchesSexuality = !selectedSexuality.length || selectedSexuality.includes(link.search.sexuality);
 
-            return matchesSearch && matchesSource && matchesBody && matchesRace && matchesSexuality;
-        });
+                return matchesSearch && matchesSource && matchesBody && matchesRace && matchesSexuality;
+            })
+            .map(({ link, originalIndex }) => ({
+                ...link,
+                originalIndex
+            }));
 
         displayResults(filteredlinks);
     }
@@ -95,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        filteredlinks.forEach((link, index) => {
+        filteredlinks.forEach(({ originalIndex, ...link }) => {
             const linkPrefix = link.flags.source === 'reddit' ? 'u/' : '@';
             const linkElement = document.createElement('div');
             linkElement.classList.add('col-lg-4', 'col-sm-6');
@@ -112,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="text-xs text-muted line-clamp-1">${linkPrefix}${link.link}</div>
                             </div>
                             <div class="text-end">
-                                <button type="button" class="btn btn-sm btn-neutral rounded-pill view-button" data-index="${index}">
+                                <button type="button" class="btn btn-sm btn-neutral rounded-pill view-button" data-index="${originalIndex}">
                                     <i class="bi bi-folder2-open me-1"></i>
                                     <span>View</span>
                                 </button>
@@ -255,7 +261,12 @@ document.addEventListener('DOMContentLoaded', () => {
         linkCanvas.show();
     }
 
-    displayResults(links);
+    const initialLinks = links.map((link, originalIndex) => ({
+        ...link,
+        originalIndex
+    }));
+
+    displayResults(initialLinks);
 
     searchInput.addEventListener('input', filterlinks);
     filterElements.source.forEach(el => el.addEventListener('change', filterlinks));
