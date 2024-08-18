@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "source": "twitter"
             },
             "search": {
-                "tags": ["gay", "jock", "white", "exhibition", "public", "risky", "23yo"],
+                "tags": ["gay", "jock", "white", "23yo", "exhibition", "public", "risky"],
                 "kinks": ["Exhibition"],
                 "sexuality": "Gay",
                 "body": "Jock",
@@ -40,14 +40,163 @@ document.addEventListener('DOMContentLoaded', () => {
             "link": "german1gay",
             "pfp": "https://pbs.twimg.com/profile_images/1809948150116786177/K3fFUp7z_400x400.jpg",
             "flags": {
-                "source": "twitter",
-                "active": true
+                "source": "twitter"
             },
             "search": {
                 "tags": ["gay", "twunk", "white", "exhibition", "public", "risky"],
                 "kinks": ["Exhibition"],
                 "sexuality": "Gay",
                 "body": "Twunk",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Luke 🔞 (70K+)",
+            "link": "luke_twink",
+            "pfp": "https://pbs.twimg.com/profile_images/1528091697162375168/t-7fTndc_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twink", "white", "exhibition", "public", "risky"],
+                "kinks": ["Exhibition"],
+                "sexuality": "Gay",
+                "body": "Twink",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Noah Bennet",
+            "link": "Bennet_Noah2",
+            "pfp": "https://pbs.twimg.com/profile_images/1822540267573981184/ob73qmtZ_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twink", "white", "22yo", "exhibition", "public", "risky"],
+                "kinks": ["Exhibition"],
+                "sexuality": "Gay",
+                "body": "Twink",
+                "race": "White"
+            }
+        },
+        {
+            "name": "MasterDax (28k)",
+            "link": "MasterDax69",
+            "pfp": "https://pbs.twimg.com/profile_images/1702970385103278080/Sq_rwu8Y_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["straight", "jock", "white", "20yo", "feet"],
+                "kinks": ["Feet"],
+                "sexuality": "Straight",
+                "body": "Jock",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Master Jock",
+            "link": "masterjock7",
+            "pfp": "https://pbs.twimg.com/profile_images/1680334229526269953/1yD6F1DY_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twunk", "white", "21yo", "feet"],
+                "kinks": ["Feet"],
+                "sexuality": "Gay",
+                "body": "Twunk",
+                "race": "White"
+            }
+        },
+        {
+            "name": "CollegeTwunk",
+            "link": "TwunkCollege",
+            "pfp": "https://pbs.twimg.com/profile_images/1825049569073233921/9gshPZne_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twunk", "asian"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twunk",
+                "race": "Asian"
+            }
+        },
+        {
+            "name": "danny",
+            "link": "dannydelanox",
+            "pfp": "https://pbs.twimg.com/profile_images/1671963209421537281/oNjhsH07_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twunk", "white", "exhibition", "public", "risky"],
+                "kinks": ["Exhibition"],
+                "sexuality": "Gay",
+                "body": "Twunk",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Connor Peters",
+            "link": "ConnorPeters",
+            "pfp": "https://pbs.twimg.com/profile_images/1679187184186974209/D8O4JvS-_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twunk", "white", "aussie"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twunk",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Tate Hoskins",
+            "link": "realtatehoskins",
+            "pfp": "https://pbs.twimg.com/profile_images/1562600762361921536/kMsRrEmD_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "jock", "white", "24yo", "exhibition", "public", "risky"],
+                "kinks": ["Exhibition"],
+                "sexuality": "Gay",
+                "body": "Jock",
+                "race": "White"
+            }
+        },
+        {
+            "name": "ChrisWTheStar",
+            "link": "ElsaGermaineRiley",
+            "pfp": "https://preview.redd.it/really-wanting-to-change-my-style-what-kind-of-clothes-v0-b8xq3ilkewid1.jpeg?auto=webp&s=08f75ab5944ce1c6c0a2d56f1fd473642429cd16",
+            "flags": {
+                "source": "reddit"
+            },
+            "search": {
+                "tags": ["gay", "twunk", "white", "wrestling", "hairy", "feet"],
+                "kinks": ["Feet"],
+                "sexuality": "Gay",
+                "body": "Twunk",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Daniel/Dantebigboi",
+            "link": "Fantastic-Potato-324",
+            "pfp": "https://preview.redd.it/explore-my-musky-scent-its-intoxicating-v0-jiix8w9jfzhd1.jpeg?width=1080&crop=smart&auto=webp&s=7bc8c96c56724e47f2ac98e89634b846269527a8",
+            "flags": {
+                "source": "reddit"
+            },
+            "search": {
+                "tags": ["gay", "twink", "white"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twink",
                 "race": "White"
             }
         }
