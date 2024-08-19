@@ -171,6 +171,111 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         {
+            "name": "Vinc",
+            "link": "vinc_twink",
+            "pfp": "https://pbs.twimg.com/profile_images/1824561426897289217/itlb2Q-Y_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twink", "white", "18yo"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twink",
+                "race": "White"
+            }
+        },
+        {
+            "name": "char 🐸",
+            "link": "CharTwinkk",
+            "pfp": "https://pbs.twimg.com/profile_images/1759498677964406784/FPeLLQ2I_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twink", "white", "18yo"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twink",
+                "race": "White"
+            }
+        },
+        {
+            "name": "𝘼𝙡𝙤Twink💫",
+            "link": "alo_twink",
+            "pfp": "https://pbs.twimg.com/profile_images/1782229619283795968/9UoicTNR_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twink", "white", "irish"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twink",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Jayden Taylor",
+            "link": "JaydenTaylorXXX",
+            "pfp": "https://pbs.twimg.com/profile_images/1795555398637817856/qEEOBbWd_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twink", "white"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twink",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Vinc :)",
+            "link": "_VincTwink",
+            "pfp": "https://pbs.twimg.com/profile_images/1818308259469557760/EhFTMPIv_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twink", "white"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twink",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Manu",
+            "link": "manutwinkx",
+            "pfp": "https://pbs.twimg.com/profile_images/1620896802294702091/uyBqkGH4_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twunk", "white", "19yo"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twunk",
+                "race": "White"
+            }
+        },
+        {
+            "name": "Darth",
+            "link": "DarthBeFit",
+            "pfp": "https://pbs.twimg.com/profile_images/1819372712067743744/8PQL4vt4_400x400.jpg",
+            "flags": {
+                "source": "twitter"
+            },
+            "search": {
+                "tags": ["gay", "twunk", "white", "18yo"],
+                "kinks": [],
+                "sexuality": "Gay",
+                "body": "Twink",
+                "race": "White"
+            }
+        },
+        {
             "name": "ChrisWTheStar",
             "link": "ElsaGermaineRiley",
             "pfp": "https://preview.redd.it/really-wanting-to-change-my-style-what-kind-of-clothes-v0-b8xq3ilkewid1.jpeg?auto=webp&s=08f75ab5944ce1c6c0a2d56f1fd473642429cd16",
