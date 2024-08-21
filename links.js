@@ -265,6 +265,19 @@ const links = [
         }
     },
     {
+        "name": "Pup Maestro",
+        "link": "pianotwink",
+        "pfp": "https://pbs.twimg.com/profile_images/1823779465895272448/hLSjMIzw_400x400.jpg",
+        "details": {
+            "tags": ["gay", "twink", "white", "pups"],
+            "kinks": ["Pups"],
+            "sexuality": "Gay",
+            "body": "Twink",
+            "race": "White",
+            "source": "twitter"
+        }
+    },
+    {
         "name": "ChrisWTheStar",
         "link": "ElsaGermaineRiley",
         "pfp": "https://preview.redd.it/really-wanting-to-change-my-style-what-kind-of-clothes-v0-b8xq3ilkewid1.jpeg?auto=webp&s=08f75ab5944ce1c6c0a2d56f1fd473642429cd16",
