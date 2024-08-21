@@ -4,314 +4,12 @@
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const links = [
-        {
-            "name": "ExhibBoy",
-            "link": "PvblicBoy",
-            "pfp": "https://pbs.twimg.com/profile_images/1819821904653365248/LCaWV3wa_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twink", "latino", "exhibition", "public", "risky"],
-                "kinks": ["Exhibition"],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "Latino"
-            }
-        },
-        {
-            "name": "STRAIGHT BOY 😈🏈",
-            "link": "seattle_boi",
-            "pfp": "https://pbs.twimg.com/profile_images/1819908552258899969/D-8OZWUf_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "jock", "white", "23yo", "exhibition", "public", "risky"],
-                "kinks": ["Exhibition"],
-                "sexuality": "Gay",
-                "body": "Jock",
-                "race": "White"
-            }
-        },
-        {
-            "name": "German Gayboy",
-            "link": "german1gay",
-            "pfp": "https://pbs.twimg.com/profile_images/1809948150116786177/K3fFUp7z_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twunk", "white", "exhibition", "public", "risky"],
-                "kinks": ["Exhibition"],
-                "sexuality": "Gay",
-                "body": "Twunk",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Luke 🔞 (70K+)",
-            "link": "luke_twink",
-            "pfp": "https://pbs.twimg.com/profile_images/1528091697162375168/t-7fTndc_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twink", "white", "exhibition", "public", "risky"],
-                "kinks": ["Exhibition"],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Noah Bennet",
-            "link": "Bennet_Noah2",
-            "pfp": "https://pbs.twimg.com/profile_images/1822540267573981184/ob73qmtZ_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twink", "white", "22yo", "exhibition", "public", "risky"],
-                "kinks": ["Exhibition"],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "White"
-            }
-        },
-        {
-            "name": "MasterDax (28k)",
-            "link": "MasterDax69",
-            "pfp": "https://pbs.twimg.com/profile_images/1702970385103278080/Sq_rwu8Y_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["straight", "jock", "white", "20yo", "feet"],
-                "kinks": ["Feet"],
-                "sexuality": "Straight",
-                "body": "Jock",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Master Jock",
-            "link": "masterjock7",
-            "pfp": "https://pbs.twimg.com/profile_images/1680334229526269953/1yD6F1DY_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twunk", "white", "21yo", "feet"],
-                "kinks": ["Feet"],
-                "sexuality": "Gay",
-                "body": "Twunk",
-                "race": "White"
-            }
-        },
-        {
-            "name": "CollegeTwunk",
-            "link": "TwunkCollege",
-            "pfp": "https://pbs.twimg.com/profile_images/1825049569073233921/9gshPZne_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twunk", "asian"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twunk",
-                "race": "Asian"
-            }
-        },
-        {
-            "name": "danny",
-            "link": "dannydelanox",
-            "pfp": "https://pbs.twimg.com/profile_images/1671963209421537281/oNjhsH07_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twunk", "white", "exhibition", "public", "risky"],
-                "kinks": ["Exhibition"],
-                "sexuality": "Gay",
-                "body": "Twunk",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Connor Peters",
-            "link": "ConnorPeters",
-            "pfp": "https://pbs.twimg.com/profile_images/1679187184186974209/D8O4JvS-_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twunk", "white", "aussie"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twunk",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Tate Hoskins",
-            "link": "realtatehoskins",
-            "pfp": "https://pbs.twimg.com/profile_images/1562600762361921536/kMsRrEmD_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "jock", "white", "24yo", "exhibition", "public", "risky"],
-                "kinks": ["Exhibition"],
-                "sexuality": "Gay",
-                "body": "Jock",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Vinc",
-            "link": "vinc_twink",
-            "pfp": "https://pbs.twimg.com/profile_images/1824561426897289217/itlb2Q-Y_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twink", "white", "18yo"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "White"
-            }
-        },
-        {
-            "name": "char 🐸",
-            "link": "CharTwinkk",
-            "pfp": "https://pbs.twimg.com/profile_images/1759498677964406784/FPeLLQ2I_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twink", "white", "18yo"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "White"
-            }
-        },
-        {
-            "name": "𝘼𝙡𝙤Twink💫",
-            "link": "alo_twink",
-            "pfp": "https://pbs.twimg.com/profile_images/1782229619283795968/9UoicTNR_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twink", "white", "irish"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Jayden Taylor",
-            "link": "JaydenTaylorXXX",
-            "pfp": "https://pbs.twimg.com/profile_images/1795555398637817856/qEEOBbWd_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twink", "white"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Vinc :)",
-            "link": "_VincTwink",
-            "pfp": "https://pbs.twimg.com/profile_images/1818308259469557760/EhFTMPIv_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twink", "white"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Manu",
-            "link": "manutwinkx",
-            "pfp": "https://pbs.twimg.com/profile_images/1620896802294702091/uyBqkGH4_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twunk", "white", "19yo"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twunk",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Darth",
-            "link": "DarthBeFit",
-            "pfp": "https://pbs.twimg.com/profile_images/1819372712067743744/8PQL4vt4_400x400.jpg",
-            "flags": {
-                "source": "twitter"
-            },
-            "search": {
-                "tags": ["gay", "twunk", "white", "18yo"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "White"
-            }
-        },
-        {
-            "name": "ChrisWTheStar",
-            "link": "ElsaGermaineRiley",
-            "pfp": "https://preview.redd.it/really-wanting-to-change-my-style-what-kind-of-clothes-v0-b8xq3ilkewid1.jpeg?auto=webp&s=08f75ab5944ce1c6c0a2d56f1fd473642429cd16",
-            "flags": {
-                "source": "reddit"
-            },
-            "search": {
-                "tags": ["gay", "twunk", "white", "wrestling", "hairy", "feet"],
-                "kinks": ["Feet"],
-                "sexuality": "Gay",
-                "body": "Twunk",
-                "race": "White"
-            }
-        },
-        {
-            "name": "Daniel/Dantebigboi",
-            "link": "Fantastic-Potato-324",
-            "pfp": "https://preview.redd.it/explore-my-musky-scent-its-intoxicating-v0-jiix8w9jfzhd1.jpeg?width=1080&crop=smart&auto=webp&s=7bc8c96c56724e47f2ac98e89634b846269527a8",
-            "flags": {
-                "source": "reddit"
-            },
-            "search": {
-                "tags": ["gay", "twink", "white"],
-                "kinks": [],
-                "sexuality": "Gay",
-                "body": "Twink",
-                "race": "White"
-            }
-        }
-    ];
-
     const searchInput = document.getElementById('search');
     const filterElements = {
         source: document.querySelectorAll('input[name="filter-version"]'),
         body: document.querySelectorAll('input[name="filter-body"]'),
         race: document.querySelectorAll('input[name="filter-race"]'),
+        kink: document.querySelectorAll('input[name="filter-kink"]'),
         sexuality: document.querySelectorAll('input[name="sexuality-filter"]'),
     };
 
@@ -320,23 +18,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedSources = Array.from(filterElements.source).filter(el => el.checked).map(el => el.value);
         const selectedBody = Array.from(filterElements.body).filter(el => el.checked).map(el => el.value);
         const selectedRace = Array.from(filterElements.race).filter(el => el.checked).map(el => el.value);
+        const selectedKink = Array.from(filterElements.kink).filter(el => el.checked).map(el => el.value);
         const selectedSexuality = Array.from(filterElements.sexuality).filter(el => el.checked).map(el => el.value);
 
         const filteredlinks = links
             .map((link, originalIndex) => ({ link, originalIndex }))
             .filter(({ link }) => {
-                const tagsAsString = link.search.tags.join(' ').toLowerCase();
+                const tagsAsString = link.details.tags.join(' ').toLowerCase();
                 const matchesSearch =
                     link.name.toLowerCase().includes(searchTerm) ||
                     link.link.toLowerCase().includes(searchTerm) ||
                     tagsAsString.includes(searchTerm);
 
-                const matchesSource = !selectedSources.length || selectedSources.includes(link.flags.source);
-                const matchesBody = !selectedBody.length || selectedBody.includes(link.search.body);
-                const matchesRace = !selectedRace.length || selectedRace.includes(link.search.race);
-                const matchesSexuality = !selectedSexuality.length || selectedSexuality.includes(link.search.sexuality);
+                const matchesSource = !selectedSources.length || selectedSources.includes(link.details.source);
+                const matchesBody = !selectedBody.length || selectedBody.includes(link.details.body);
+                const matchesRace = !selectedRace.length || selectedRace.includes(link.details.race);
+                const matchesKink = !selectedKink.length || selectedKink.some(kink => link.details.kinks.includes(kink));
+                const matchesSexuality = !selectedSexuality.length || selectedSexuality.includes(link.details.sexuality);
 
-                return matchesSearch && matchesSource && matchesBody && matchesRace && matchesSexuality;
+                return matchesSearch && matchesSource && matchesBody && matchesRace && matchesKink && matchesSexuality;
             })
             .map(({ link, originalIndex }) => ({
                 ...link,
@@ -356,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         filteredlinks.forEach(({ originalIndex, ...link }) => {
-            const linkPrefix = link.flags.source === 'reddit' ? 'u/' : '@';
+            const linkPrefix = link.details.source === 'reddit' ? 'u/' : '@';
             const linkElement = document.createElement('div');
             linkElement.classList.add('col-lg-4', 'col-sm-6');
 
@@ -438,15 +138,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             -->
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-4">
-                                    <span class="d-block h6 text-heading mb-0">${link.search.sexuality}</span>
+                                    <span class="d-block h6 text-heading mb-0">${link.details.sexuality}</span>
                                     <span class="d-block text-sm text-muted">Sexuality</span>
                                 </div>
                                 <div class="col-4">
-                                    <span class="d-block h6 text-heading mb-0">${link.search.body}</span>
+                                    <span class="d-block h6 text-heading mb-0">${link.details.body}</span>
                                     <span class="d-block text-sm text-muted">Body</span>
                                 </div>
                                 <div class="col-4">
-                                    <span class="d-block h6 text-heading mb-0">${link.search.race}</span>
+                                    <span class="d-block h6 text-heading mb-0">${link.details.race}</span>
                                     <span class="d-block text-sm text-muted">Race</span>
                                 </div>
                             </div>
@@ -526,5 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
     filterElements.source.forEach(el => el.addEventListener('change', filterlinks));
     filterElements.body.forEach(el => el.addEventListener('change', filterlinks));
     filterElements.race.forEach(el => el.addEventListener('change', filterlinks));
+    filterElements.kink.forEach(el => el.addEventListener('change', filterlinks));
     filterElements.sexuality.forEach(el => el.addEventListener('change', filterlinks));
 });
