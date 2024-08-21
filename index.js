@@ -157,10 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card mb-3">
                 <div class="card-body">
                     <span class="d-block h6 text-heading mb-0">Kinks</span>
-                    <span class="d-block text-sm text-muted">${link.details.kinks.join(', ')}</span>
+                    <span class="d-block text-sm text-muted">${link.details.kinks.length > 0 ? link.details.kinks.join(', ') : 'N/A'}</span>
                     <hr class="my-3">
                     <span class="d-block h6 text-heading mb-0">Tags</span>
-                    <span class="d-block text-sm text-muted">${link.details.tags.join(', ')}</span>
+                    <span class="d-block text-sm text-muted">${link.details.tags.length > 0 ? link.details.tags.join(', ') : 'N/A'}</span>
                 </div>
             </div>
             <!--
