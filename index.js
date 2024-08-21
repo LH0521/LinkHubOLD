@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openCanvas(link) {
-        const linkPrefix = link.flags.source === 'reddit' ? 'u/' : '@';
-        const urlPrefix = link.flags.source === 'reddit' ? 'https://www.reddit.com/user/' : 'https://x.com/';
+        const linkPrefix = link.details.source === 'reddit' ? 'u/' : '@';
+        const urlPrefix = link.details.source === 'reddit' ? 'https://www.reddit.com/user/' : 'https://x.com/';
         const fullUrl = urlPrefix + link.link;
 
         document.getElementById('link_canvas_label').textContent = `Profile of ${link.name}`;
@@ -157,10 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card mb-3">
                 <div class="card-body">
                     <span class="d-block h6 text-heading mb-0">Kinks</span>
-                    <span class="d-block text-sm text-muted">${link.search.kinks.join(', ')}</span>
+                    <span class="d-block text-sm text-muted">${link.details.kinks.join(', ')}</span>
                     <hr class="my-3">
                     <span class="d-block h6 text-heading mb-0">Tags</span>
-                    <span class="d-block text-sm text-muted">${link.search.tags.join(', ')}</span>
+                    <span class="d-block text-sm text-muted">${link.details.tags.join(', ')}</span>
                 </div>
             </div>
             <!--
