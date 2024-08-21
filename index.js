@@ -4,6 +4,124 @@
 */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const firebaseConfig = {
+        apiKey: "AIzaSyBov3gDF7515z2rnsBoREsZEOfQOBUuLnQ",
+        authDomain: "linkhub-3dc70.firebaseapp.com",
+        projectId: "linkhub-3dc70",
+        storageBucket: "linkhub-3dc70.appspot.com",
+        messagingSenderId: "191484102424",
+        appId: "1:191484102424:web:a87e50e509574c0d9f406d"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    function signInWithGoogle() {
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                console.log(result.user);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    document.getElementById('login-button').addEventListener('click', signInWithGoogle);
+
+    function saveLink(linkId) {
+        const user = auth.currentUser;
+        if (user) {
+            const userDocRef = db.collection('users').doc(user.uid);
+            userDocRef.set({
+                savedLinks: firebase.firestore.FieldValue.arrayUnion(linkId)
+            }, { merge: true });
+        } else {
+            alert("Please sign in to save links.");
+        }
+    }
+
+    document.querySelectorAll('.save-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const linkId = this.getAttribute('data-link-id');
+            saveLink(linkId);
+        });
+    });
+
+    function rateLink(linkId, rating) {
+        const user = auth.currentUser;
+        if (user) {
+            const ratingDocRef = db.collection('links').doc(linkId).collection('ratings').doc(user.uid);
+            ratingDocRef.set({
+                rating: rating
+            });
+        } else {
+            alert("Please sign in to rate links.");
+        }
+    }
+
+    document.querySelectorAll('.rating input').forEach(input => {
+        input.addEventListener('change', function () {
+            const linkId = document.getElementById('link_canvas').getAttribute('data-link-id');
+            rateLink(linkId, this.value);
+        });
+    });
+
+    function incrementOpenCount(linkId) {
+        const linkDocRef = db.collection('links').doc(linkId);
+        linkDocRef.update({
+            openCount: firebase.firestore.FieldValue.increment(1)
+        });
+    }
+
+    document.querySelectorAll('.view-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const linkId = this.getAttribute('data-index');
+            incrementOpenCount(linkId);
+        });
+    });
+
+    function displaySavedLinks() {
+        const user = auth.currentUser;
+        if (user) {
+            const userDocRef = db.collection('users').doc(user.uid);
+            userDocRef.get().then(doc => {
+                if (doc.exists) {
+                    const savedLinks = doc.data().savedLinks || [];
+                }
+            });
+        }
+    }
+
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            displaySavedLinks();
+        }
+    });
+
+    function displayRating(linkId) {
+        const linkDocRef = db.collection('links').doc(linkId);
+        linkDocRef.collection('ratings').get().then(snapshot => {
+            let totalRating = 0;
+            snapshot.forEach(doc => {
+                totalRating += doc.data().rating;
+            });
+            const averageRating = totalRating / snapshot.size;
+            document.getElementById('link-rating').textContent = averageRating.toFixed(1);
+        });
+    }
+
+    function displayOpenCount(linkId) {
+        const linkDocRef = db.collection('links').doc(linkId);
+        linkDocRef.get().then(doc => {
+            if (doc.exists) {
+                document.getElementById('link-opens').textContent = doc.data().openCount || 0;
+            }
+        });
+    }
+
     const links = [
         {
             "name": "ExhibBoy",
