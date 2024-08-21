@@ -4,155 +4,6 @@
 */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const firebaseConfig = {
-        apiKey: "AIzaSyBov3gDF7515z2rnsBoREsZEOfQOBUuLnQ",
-        authDomain: "linkhub-3dc70.firebaseapp.com",
-        projectId: "linkhub-3dc70",
-        storageBucket: "linkhub-3dc70.appspot.com",
-        messagingSenderId: "191484102424",
-        appId: "1:191484102424:web:a87e50e509574c0d9f406d"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    function signInWithGoogle() {
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                console.log(result.user);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
-
-    document.getElementById('login-button').addEventListener('click', signInWithGoogle);
-
-    function saveLink(linkId) {
-        const user = auth.currentUser;
-        if (user) {
-            const userDocRef = db.collection('users').doc(user.uid);
-            userDocRef.set({
-                savedLinks: firebase.firestore.FieldValue.arrayUnion(linkId)
-            }, { merge: true });
-            alert('Link saved successfully!');
-        } else {
-            alert("Please sign in to save links.");
-        }
-    }
-
-    document.querySelectorAll('.save-button').forEach(button => {
-        button.addEventListener('click', function () {
-            const linkId = this.getAttribute('data-link-id');
-            saveLink(linkId);
-        });
-    });
-
-    function rateLink(linkId, rating) {
-        const user = auth.currentUser;
-        if (user) {
-            const ratingDocRef = db.collection('links').doc(linkId).collection('ratings').doc(user.uid);
-            ratingDocRef.set({
-                rating: rating
-            }).then(() => {
-                alert('Rating saved successfully!');
-            }).catch(error => {
-                console.error("Error saving rating: ", error);
-            });
-        } else {
-            alert("Please sign in to rate links.");
-        }
-    }
-
-    document.querySelectorAll('.rating input').forEach(input => {
-        input.addEventListener('change', function () {
-            const linkId = document.getElementById('link_canvas').getAttribute('data-link-id');
-            rateLink(linkId, this.value);
-        });
-    });
-
-    function incrementOpenCount(linkId) {
-        const linkDocRef = db.collection('links').doc(linkId);
-        linkDocRef.update({
-            openCount: firebase.firestore.FieldValue.increment(1)
-        }).then(() => {
-            console.log('Open count incremented');
-        }).catch(error => {
-            console.error("Error incrementing open count: ", error);
-        });
-    }
-
-    document.querySelectorAll('.view-button').forEach(button => {
-        button.addEventListener('click', function () {
-            const linkId = this.getAttribute('data-index');
-            incrementOpenCount(linkId);
-            openCanvas(links[linkId]);
-        });
-    });
-
-    function displaySavedLinks() {
-        const user = auth.currentUser;
-        if (user) {
-            const userDocRef = db.collection('users').doc(user.uid);
-            userDocRef.get().then(doc => {
-                if (doc.exists) {
-                    const savedLinks = doc.data().savedLinks || [];
-                    console.log('Saved Links:', savedLinks);
-                }
-            }).catch(error => {
-                console.error("Error fetching saved links: ", error);
-            });
-        }
-    }
-
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            document.querySelectorAll('.user-name').forEach(element => {
-                element.textContent = user.displayName || 'Anonymous';
-            });
-            document.querySelectorAll('.user-profile-pic').forEach(element => {
-                element.src = user.photoURL || 'default-profile-pic.png';
-            });
-
-            displaySavedLinks();
-        } else {
-            document.querySelectorAll('.user-name').forEach(element => {
-                element.textContent = 'Anonymous';
-            });
-            document.querySelectorAll('.user-profile-pic').forEach(element => {
-                element.src = 'default-profile-pic.png';
-            });
-        }
-    });
-
-    function displayRating(linkId) {
-        const linkDocRef = db.collection('links').doc(linkId);
-        linkDocRef.collection('ratings').get().then(snapshot => {
-            let totalRating = 0;
-            snapshot.forEach(doc => {
-                totalRating += doc.data().rating;
-            });
-            const averageRating = totalRating / snapshot.size;
-            document.getElementById('link-rating').textContent = averageRating.toFixed(1);
-        }).catch(error => {
-            console.error("Error fetching rating: ", error);
-        });
-    }
-
-    function displayOpenCount(linkId) {
-        const linkDocRef = db.collection('links').doc(linkId);
-        linkDocRef.get().then(doc => {
-            if (doc.exists) {
-                document.getElementById('link-opens').textContent = doc.data().openCount || 0;
-            }
-        }).catch(error => {
-            console.error("Error fetching open count: ", error);
-        });
-    }
-
     const links = [
         {
             "name": "ExhibBoy",
@@ -504,7 +355,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        filteredlinks.forEach(({ link, originalIndex }) => {
+        filteredlinks.forEach(({ originalIndex, ...link }) => {
+            const linkPrefix = link.flags.source === 'reddit' ? 'u/' : '@';
             const linkElement = document.createElement('div');
             linkElement.classList.add('col-lg-4', 'col-sm-6');
 
@@ -517,16 +369,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="flex-1">
                                 <a href="#" class="d-block font-semibold text-sm text-heading text-primary-hover">${link.name}</a>
-                                <div class="text-xs text-muted line-clamp-1">@${link.link}</div>
+                                <div class="text-xs text-muted line-clamp-1">${linkPrefix}${link.link}</div>
                             </div>
                             <div class="text-end">
-                                <button type="button" class="btn btn-sm btn-neutral rounded-pill view-button" data-link-id="${link.link}">
+                                <button type="button" class="btn btn-sm btn-neutral rounded-pill view-button" data-index="${originalIndex}">
                                     <i class="bi bi-folder2-open me-1"></i>
                                     <span>View</span>
-                                </button>
-                                <button type="button" class="btn btn-sm btn-neutral rounded-pill save-button" data-link-id="${link.link}">
-                                    <i class="bi bi-save2 me-1"></i>
-                                    <span>Save</span>
                                 </button>
                             </div>
                         </div>
@@ -539,18 +387,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('.view-button').forEach(button => {
             button.addEventListener('click', function () {
-                const linkId = this.getAttribute('data-link-id');
-                openCanvas(linkId);
+                const index = this.getAttribute('data-index');
+                openCanvas(links[index]);
             });
         });
     }
 
-    function openCanvas(linkId) {
-        const link = links.find(l => l.id === linkId);
+    function openCanvas(link) {
         const linkPrefix = link.flags.source === 'reddit' ? 'u/' : '@';
         const urlPrefix = link.flags.source === 'reddit' ? 'https://www.reddit.com/user/' : 'https://x.com/';
         const fullUrl = urlPrefix + link.link;
-    
+
         document.getElementById('link_canvas_label').textContent = `Profile of ${link.name}`;
         document.querySelector('.offcanvas-body').innerHTML = `
             <div class="card mb-3">
@@ -591,12 +438,79 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             </div>
-            <!-- Other content for the canvas -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-4">
+                            <span class="d-block h6 text-heading mb-0">${link.search.sexuality}</span>
+                            <span class="d-block text-sm text-muted">Sexuality</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="d-block h6 text-heading mb-0">${link.search.body}</span>
+                            <span class="d-block text-sm text-muted">Body</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="d-block h6 text-heading mb-0">${link.search.race}</span>
+                            <span class="d-block text-sm text-muted">Race</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <span class="d-block h6 text-heading mb-0">Kinks</span>
+                    <span class="d-block text-sm text-muted">${link.search.kinks.join(', ')}</span>
+                    <hr class="my-3">
+                    <span class="d-block h6 text-heading mb-0">Tags</span>
+                    <span class="d-block text-sm text-muted">${link.search.tags.join(', ')}</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <span class="d-block h6 text-heading mb-0">Give ${link.name} a rating</span>
+                            <span class="d-block text-sm text-muted">0 Votes | Your Vote <b>5</b></span>
+                        </div>
+                        <button class="btn btn-sm btn-neutral ms-auto">Information</button>
+                    </div>
+                    <hr class="my-3">
+                    <div class="rating">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label title="Excellent!" for="star5">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                            </svg>
+                        </label>
+                        <input value="4" name="rate" id="star4" type="radio" />
+                        <label title="Great!" for="star4">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                            </svg>
+                        </label>
+                        <input value="3" name="rate" id="star3" type="radio" />
+                        <label title="Good" for="star3">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                            </svg>
+                        </label>
+                        <input value="2" name="rate" id="star2" type="radio" />
+                        <label title="Okay" for="star2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                            </svg>
+                        </label>
+                        <input value="1" name="rate" id="star1" type="radio" />
+                        <label title="Bad" for="star1">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                            </svg>
+                        </label>
+                    </div>
+                </div>
+            </div>
         `;
-    
-        document.getElementById('link_canvas').setAttribute('data-link-id', linkId);
-        displayRating(linkId);
-        displayOpenCount(linkId);
+
         const linkCanvas = new bootstrap.Offcanvas(document.getElementById('link_canvas'));
         linkCanvas.show();
     }
