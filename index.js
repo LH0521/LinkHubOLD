@@ -110,7 +110,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     auth.onAuthStateChanged(user => {
         if (user) {
+            document.querySelectorAll('.user-name').forEach(element => {
+                element.textContent = user.displayName || 'Anonymous';
+            });
+            document.querySelectorAll('.user-profile-pic').forEach(element => {
+                element.src = user.photoURL || 'default-profile-pic.png';
+            });
+    
             displaySavedLinks();
+        } else {
+            document.querySelectorAll('.user-name').forEach(element => {
+                element.textContent = 'Anonymous';
+            });
+            document.querySelectorAll('.user-profile-pic').forEach(element => {
+                element.src = 'default-profile-pic.png';
+            });
         }
     });
 
@@ -537,6 +551,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.offcanvas-body').innerHTML = `
             <div class="card mb-3">
                 <div class="card-body">
+                    <button type="button" class="btn btn-sm btn-neutral save-button" data-link-id="${linkId}">
+                        <i class="bi bi-save2 me-1"></i>
+                        Save
+                    </button>
                     <div class="row g-0">
                         <div class="col">
                             <div class="d-flex align-items-center">
