@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             userDocRef.set({
                 savedLinks: firebase.firestore.FieldValue.arrayUnion(linkId)
             }, { merge: true });
+            alert('Link saved successfully!');
         } else {
             alert("Please sign in to save links.");
         }
@@ -56,6 +57,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const ratingDocRef = db.collection('links').doc(linkId).collection('ratings').doc(user.uid);
             ratingDocRef.set({
                 rating: rating
+            }).then(() => {
+                alert('Rating saved successfully!');
+            }).catch(error => {
+                console.error("Error saving rating: ", error);
             });
         } else {
             alert("Please sign in to rate links.");
@@ -73,6 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const linkDocRef = db.collection('links').doc(linkId);
         linkDocRef.update({
             openCount: firebase.firestore.FieldValue.increment(1)
+        }).then(() => {
+            console.log('Open count incremented');
+        }).catch(error => {
+            console.error("Error incrementing open count: ", error);
         });
     }
 
@@ -80,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', function () {
             const linkId = this.getAttribute('data-index');
             incrementOpenCount(linkId);
+            openCanvas(links[linkId]);
         });
     });
 
@@ -90,7 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
             userDocRef.get().then(doc => {
                 if (doc.exists) {
                     const savedLinks = doc.data().savedLinks || [];
+                    console.log('Saved Links:', savedLinks);
                 }
+            }).catch(error => {
+                console.error("Error fetching saved links: ", error);
             });
         }
     }
@@ -110,6 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const averageRating = totalRating / snapshot.size;
             document.getElementById('link-rating').textContent = averageRating.toFixed(1);
+        }).catch(error => {
+            console.error("Error fetching rating: ", error);
         });
     }
 
@@ -119,6 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (doc.exists) {
                 document.getElementById('link-opens').textContent = doc.data().openCount || 0;
             }
+        }).catch(error => {
+            console.error("Error fetching open count: ", error);
         });
     }
 
@@ -593,6 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button class="btn btn-sm btn-neutral ms-auto">Information</button>
                     </div>
                     <hr class="my-3">
+                    <!--
                     <div class="rating">
                         <input type="radio" id="star5" name="rate" value="5" />
                         <label title="Excellent!" for="star5">
@@ -625,12 +643,31 @@ document.addEventListener('DOMContentLoaded', () => {
                             </svg>
                         </label>
                     </div>
+                    -->
+                    <div class="rating">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label title="Excellent!" for="star5">★</label>
+
+                        <input value="4" name="rate" id="star4" type="radio" />
+                        <label title="Great!" for="star4">★</label>
+
+                        <input value="3" name="rate" id="star3" type="radio" />
+                        <label title="Good" for="star3">★</label>
+
+                        <input value="2" name="rate" id="star2" type="radio" />
+                        <label title="Okay" for="star2">★</label>
+
+                        <input value="1" name="rate" id="star1" type="radio" />
+                        <label title="Bad" for="star1">★</label>
+                    </div>
                 </div>
             </div>
         `;
 
         const linkCanvas = new bootstrap.Offcanvas(document.getElementById('link_canvas'));
         linkCanvas.show();
+        displayRating(link.originalIndex);
+        displayOpenCount(link.originalIndex);
     }
 
     const initialLinks = links.map((link, originalIndex) => ({
