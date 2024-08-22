@@ -5,6 +5,19 @@
 
 const links = [
     {
+        "name": "PaulBdx🏳️‍🌈😈",
+        "link": "PaulBdx",
+        "icon": "1575752815623954432/64erQisp_400x400.jpg",
+        "info": {
+            "tags": ["gay", "twink", "white", "25yo", "exhibition", "public", "risky"],
+            "kinks": ["Exhibition"],
+            "sexuality": "Gay",
+            "body": "Twink",
+            "race": "White",
+            "source": "twitter"
+        }
+    },
+    {
         "name": "ExhibBoy",
         "link": "PvblicBoy",
         "icon": "1819821904653365248/LCaWV3wa_400x400.jpg",
