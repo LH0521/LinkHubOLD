@@ -5,6 +5,32 @@
 
 const links = [
     {
+        "name": "Blonde Boy Brad",
+        "link": "blondeboybrad1",
+        "icon": "1808551429889564672/wqHInngt_400x400.jpg",
+        "info": {
+            "tags": ["gay", "twunk", "white"],
+            "kinks": [],
+            "sexuality": "Gay",
+            "body": "Twunk",
+            "race": "White",
+            "source": "twitter"
+        }
+    },
+    {
+        "name": "Cody",
+        "link": "Motocodyxx",
+        "icon": "1764838340140945409/n4mLI-ws_400x400.jpg",
+        "info": {
+            "tags": ["gay", "twunk", "white", "tattoos"],
+            "kinks": [],
+            "sexuality": "Gay",
+            "body": "Twunk",
+            "race": "White",
+            "source": "twitter"
+        }
+    },
+    {
         "name": "melo",
         "link": "jmelo699",
         "icon": "1818042545735118849/3PBQqWt1_400x400.jpg",
@@ -312,6 +338,19 @@ const links = [
             "kinks": ["Pups"],
             "sexuality": "Gay",
             "body": "Twink",
+            "race": "White",
+            "source": "twitter"
+        }
+    },
+    {
+        "name": ";)",
+        "link": "glittrrcowboy",
+        "icon": "1816272479733567488/oUnXGdWo_400x400.jpg",
+        "info": {
+            "tags": ["gay", "twunk", "white"],
+            "kinks": [],
+            "sexuality": "Gay",
+            "body": "Twunk",
             "race": "White",
             "source": "twitter"
         }
