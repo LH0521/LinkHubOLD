@@ -4,7 +4,52 @@
 */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const filterCategories = {
+        source: "Source",
+        body: "Body",
+        race: "Race",
+        kink: "Kinks / Fetishes",
+        sexuality: "Sexuality"
+    };
+
+    const filterContainer = document.getElementById('filter-sections');
+
+    // Function to generate the HTML for a filter category
+    function generateFilterHTML(category, options) {
+        return `
+            <div class="card h-full">
+                <div class="card-body">
+                    <div class="card-title d-flex align-items-center">
+                        <h5 class="mb-0">${filterCategories[category]}</h5>
+                    </div>
+                    <div class="vstack gap-3 mt-4">
+                        ${options.map(({ label, icon, value }) => `
+                        <div class="form-item-checkable">
+                            <label class="item w-full" for="filter-${value}">
+                                <span class="form-item-click d-flex align-items-center border border-primary-hover text-heading p-3 rounded-2">
+                                    <i class="ph ph-${icon} text-lg me-3"></i>
+                                    <span class="text-body text-sm font-semibold">${label}</span>
+                                    <div class="ms-auto text-end">
+                                        <input class="form-check-input" type="checkbox" name="filter-${category}" id="filter-${value}" value="${value}">
+                                    </div>
+                                </span>
+                            </label>
+                        </div>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // Dynamically generate and inject filter HTML
+    for (const [category, displayName] of Object.entries(filterCategories)) {
+        const options = getFilterOptions(category);
+        const filterHTML = generateFilterHTML(category, options);
+        filterContainer.innerHTML += filterHTML;
+    }
+
     const searchInput = document.getElementById('search');
+    
     const filters = {
         source: 'filter-version',
         body: 'filter-body',
