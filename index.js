@@ -24,17 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const filteredlinks = links
             .map((link, originalIndex) => ({ link, originalIndex }))
             .filter(({ link }) => {
-                const tagsAsString = link.details.tags.join(' ').toLowerCase();
+                const tagsAsString = link.info.tags.join(' ').toLowerCase();
                 const matchesSearch =
                     link.name.toLowerCase().includes(searchTerm) ||
                     link.link.toLowerCase().includes(searchTerm) ||
                     tagsAsString.includes(searchTerm);
 
-                const matchesSource = !selectedSources.length || selectedSources.includes(link.details.source);
-                const matchesBody = !selectedBody.length || selectedBody.includes(link.details.body);
-                const matchesRace = !selectedRace.length || selectedRace.includes(link.details.race);
-                const matchesKink = !selectedKink.length || selectedKink.some(kink => link.details.kinks.includes(kink));
-                const matchesSexuality = !selectedSexuality.length || selectedSexuality.includes(link.details.sexuality);
+                const matchesSource = !selectedSources.length || selectedSources.includes(link.info.source);
+                const matchesBody = !selectedBody.length || selectedBody.includes(link.info.body);
+                const matchesRace = !selectedRace.length || selectedRace.includes(link.info.race);
+                const matchesKink = !selectedKink.length || selectedKink.some(kink => link.info.kinks.includes(kink));
+                const matchesSexuality = !selectedSexuality.length || selectedSexuality.includes(link.info.sexuality);
 
                 return matchesSearch && matchesSource && matchesBody && matchesRace && matchesKink && matchesSexuality;
             })
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         filteredlinks.forEach(({ originalIndex, ...link }) => {
-            const linkPrefix = link.details.source === 'reddit' ? 'u/' : '@';
+            const linkPrefix = link.info.source === 'reddit' ? 'u/' : '@';
             const linkElement = document.createElement('div');
             linkElement.classList.add('col-lg-4', 'col-sm-6');
 
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="card-body pb-5">
                         <div class="d-flex align-items-center">
                             <div class="me-3">
-                                <img alt="Profile Picture" class="avatar rounded-1" src="${link.pfp}">
+                                <img alt="Profile Picture" class="avatar rounded-1" src="${link.icon}">
                             </div>
                             <div class="flex-1">
                                 <a href="#" class="d-block font-semibold text-sm text-heading text-primary-hover">${link.name}</a>
@@ -94,11 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openCanvas(link) {
-        const linkPrefix = link.details.source === 'reddit' ? 'u/' : '@';
-        const urlPrefix = link.details.source === 'reddit' ? 'https://www.reddit.com/user/' : 'https://x.com/';
-        const pfpPrefix = link.details.source === 'reddit' ? 'https://preview.redd.it/' : 'https://pbs.twimg.com/profile_images/'
+        const linkPrefix = link.info.source === 'reddit' ? 'u/' : '@';
+        const urlPrefix = link.info.source === 'reddit' ? 'https://www.reddit.com/user/' : 'https://x.com/';
+        const iconPrefix = link.info.source === 'reddit' ? 'https://preview.redd.it/' : 'https://pbs.twimg.com/profile_images/'
         const fullUrl = urlPrefix + link.link;
-        const fullPfp = pfpPrefix + link.pfp;
+        const fullicon = iconPrefix + link.icon;
 
         document.getElementById('link_canvas_label').textContent = `Profile of ${link.name}`;
         document.querySelector('.offcanvas-body').innerHTML = `
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="col">
                             <div class="d-flex align-items-center">
                                 <div class="me-3">
-                                    <img alt="Profile Picture" class="avatar rounded-1" src="${fullPfp}">
+                                    <img alt="Profile Picture" class="avatar rounded-1" src="${fullicon}">
                                 </div>
                                 <div class="flex-1">
                                     <a href="#" class="d-block font-semibold text-sm text-heading text-primary-hover">${link.name}</a>
@@ -140,15 +140,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             -->
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-4">
-                                    <span class="d-block h6 text-heading mb-0">${link.details.sexuality}</span>
+                                    <span class="d-block h6 text-heading mb-0">${link.info.sexuality}</span>
                                     <span class="d-block text-sm text-muted">Sexuality</span>
                                 </div>
                                 <div class="col-4">
-                                    <span class="d-block h6 text-heading mb-0">${link.details.body}</span>
+                                    <span class="d-block h6 text-heading mb-0">${link.info.body}</span>
                                     <span class="d-block text-sm text-muted">Body</span>
                                 </div>
                                 <div class="col-4">
-                                    <span class="d-block h6 text-heading mb-0">${link.details.race}</span>
+                                    <span class="d-block h6 text-heading mb-0">${link.info.race}</span>
                                     <span class="d-block text-sm text-muted">Race</span>
                                 </div>
                             </div>
@@ -159,10 +159,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card mb-3">
                 <div class="card-body">
                     <span class="d-block h6 text-heading mb-0">Kinks</span>
-                    <span class="d-block text-sm text-muted">${link.details.kinks.length > 0 ? link.details.kinks.join(', ') : 'N/A'}</span>
+                    <span class="d-block text-sm text-muted">${link.info.kinks.length > 0 ? link.info.kinks.join(', ') : 'N/A'}</span>
                     <hr class="my-3">
                     <span class="d-block h6 text-heading mb-0">Tags</span>
-                    <span class="d-block text-sm text-muted">${link.details.tags.length > 0 ? link.details.tags.join(', ') : 'N/A'}</span>
+                    <span class="d-block text-sm text-muted">${link.info.tags.length > 0 ? link.info.tags.join(', ') : 'N/A'}</span>
                 </div>
             </div>
             <!--
