@@ -7,7 +7,7 @@ const links = [
     {
         "name": "ExhibBoy",
         "link": "PvblicBoy",
-        "pfp": "https://pbs.twimg.com/profile_images/1819821904653365248/LCaWV3wa_400x400.jpg",
+        "pfp": "1819821904653365248/LCaWV3wa_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "latino", "exhibition", "public", "risky"],
             "kinks": ["Exhibition"],
@@ -20,7 +20,7 @@ const links = [
     {
         "name": "STRAIGHT BOY 😈🏈",
         "link": "seattle_boi",
-        "pfp": "https://pbs.twimg.com/profile_images/1819908552258899969/D-8OZWUf_400x400.jpg",
+        "pfp": "1819908552258899969/D-8OZWUf_400x400.jpg",
         "details": {
             "tags": ["gay", "jock", "white", "23yo", "exhibition", "public", "risky"],
             "kinks": ["Exhibition"],
@@ -33,7 +33,7 @@ const links = [
     {
         "name": "German Gayboy",
         "link": "german1gay",
-        "pfp": "https://pbs.twimg.com/profile_images/1809948150116786177/K3fFUp7z_400x400.jpg",
+        "pfp": "1809948150116786177/K3fFUp7z_400x400.jpg",
         "details": {
             "tags": ["gay", "twunk", "white", "exhibition", "public", "risky"],
             "kinks": ["Exhibition"],
@@ -46,7 +46,7 @@ const links = [
     {
         "name": "Luke 🔞 (70K+)",
         "link": "luke_twink",
-        "pfp": "https://pbs.twimg.com/profile_images/1528091697162375168/t-7fTndc_400x400.jpg",
+        "pfp": "1528091697162375168/t-7fTndc_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white", "exhibition", "public", "risky"],
             "kinks": ["Exhibition"],
@@ -59,7 +59,7 @@ const links = [
     {
         "name": "Noah Bennet",
         "link": "Bennet_Noah2",
-        "pfp": "https://pbs.twimg.com/profile_images/1822540267573981184/ob73qmtZ_400x400.jpg",
+        "pfp": "1822540267573981184/ob73qmtZ_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white", "22yo", "exhibition", "public", "risky"],
             "kinks": ["Exhibition"],
@@ -72,7 +72,7 @@ const links = [
     {
         "name": "MasterDax (28k)",
         "link": "MasterDax69",
-        "pfp": "https://pbs.twimg.com/profile_images/1702970385103278080/Sq_rwu8Y_400x400.jpg",
+        "pfp": "1702970385103278080/Sq_rwu8Y_400x400.jpg",
         "details": {
             "tags": ["straight", "jock", "white", "20yo", "feet"],
             "kinks": ["Feet"],
@@ -85,7 +85,7 @@ const links = [
     {
         "name": "Master Jock",
         "link": "masterjock7",
-        "pfp": "https://pbs.twimg.com/profile_images/1680334229526269953/1yD6F1DY_400x400.jpg",
+        "pfp": "1680334229526269953/1yD6F1DY_400x400.jpg",
         "details": {
             "tags": ["gay", "twunk", "white", "21yo", "feet"],
             "kinks": ["Feet"],
@@ -98,7 +98,7 @@ const links = [
     {
         "name": "CollegeTwunk",
         "link": "TwunkCollege",
-        "pfp": "https://pbs.twimg.com/profile_images/1825049569073233921/9gshPZne_400x400.jpg",
+        "pfp": "1825049569073233921/9gshPZne_400x400.jpg",
         "details": {
             "tags": ["gay", "twunk", "asian"],
             "kinks": [],
@@ -111,7 +111,7 @@ const links = [
     {
         "name": "danny",
         "link": "dannydelanox",
-        "pfp": "https://pbs.twimg.com/profile_images/1671963209421537281/oNjhsH07_400x400.jpg",
+        "pfp": "1671963209421537281/oNjhsH07_400x400.jpg",
         "details": {
             "tags": ["gay", "twunk", "white", "exhibition", "public", "risky"],
             "kinks": ["Exhibition"],
@@ -124,7 +124,7 @@ const links = [
     {
         "name": "Connor Peters",
         "link": "ConnorPeters",
-        "pfp": "https://pbs.twimg.com/profile_images/1679187184186974209/D8O4JvS-_400x400.jpg",
+        "pfp": "1679187184186974209/D8O4JvS-_400x400.jpg",
         "details": {
             "tags": ["gay", "twunk", "white", "aussie"],
             "kinks": [],
@@ -137,7 +137,7 @@ const links = [
     {
         "name": "Tate Hoskins",
         "link": "realtatehoskins",
-        "pfp": "https://pbs.twimg.com/profile_images/1562600762361921536/kMsRrEmD_400x400.jpg",
+        "pfp": "1562600762361921536/kMsRrEmD_400x400.jpg",
         "details": {
             "tags": ["gay", "jock", "white", "24yo", "exhibition", "public", "risky"],
             "kinks": ["Exhibition"],
@@ -150,7 +150,7 @@ const links = [
     {
         "name": "Vinc",
         "link": "vinc_twink",
-        "pfp": "https://pbs.twimg.com/profile_images/1824561426897289217/itlb2Q-Y_400x400.jpg",
+        "pfp": "1824561426897289217/itlb2Q-Y_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white", "18yo"],
             "kinks": [],
@@ -163,7 +163,7 @@ const links = [
     {
         "name": "char 🐸",
         "link": "CharTwinkk",
-        "pfp": "https://pbs.twimg.com/profile_images/1759498677964406784/FPeLLQ2I_400x400.jpg",
+        "pfp": "1759498677964406784/FPeLLQ2I_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white", "18yo"],
             "kinks": [],
@@ -176,7 +176,7 @@ const links = [
     {
         "name": "𝘼𝙡𝙤Twink💫",
         "link": "alo_twink",
-        "pfp": "https://pbs.twimg.com/profile_images/1782229619283795968/9UoicTNR_400x400.jpg",
+        "pfp": "1782229619283795968/9UoicTNR_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white", "irish"],
             "kinks": [],
@@ -189,7 +189,7 @@ const links = [
     {
         "name": "Jayden Taylor",
         "link": "JaydenTaylorXXX",
-        "pfp": "https://pbs.twimg.com/profile_images/1795555398637817856/qEEOBbWd_400x400.jpg",
+        "pfp": "1795555398637817856/qEEOBbWd_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white"],
             "kinks": [],
@@ -202,7 +202,7 @@ const links = [
     {
         "name": "Vinc :)",
         "link": "_VincTwink",
-        "pfp": "https://pbs.twimg.com/profile_images/1818308259469557760/EhFTMPIv_400x400.jpg",
+        "pfp": "1818308259469557760/EhFTMPIv_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white"],
             "kinks": [],
@@ -215,7 +215,7 @@ const links = [
     {
         "name": "Manu",
         "link": "manutwinkx",
-        "pfp": "https://pbs.twimg.com/profile_images/1620896802294702091/uyBqkGH4_400x400.jpg",
+        "pfp": "1620896802294702091/uyBqkGH4_400x400.jpg",
         "details": {
             "tags": ["gay", "twunk", "white", "19yo"],
             "kinks": [],
@@ -228,7 +228,7 @@ const links = [
     {
         "name": "Darth",
         "link": "DarthBeFit",
-        "pfp": "https://pbs.twimg.com/profile_images/1819372712067743744/8PQL4vt4_400x400.jpg",
+        "pfp": "1819372712067743744/8PQL4vt4_400x400.jpg",
         "details": {
             "tags": ["gay", "twunk", "white", "18yo"],
             "kinks": [],
@@ -241,7 +241,7 @@ const links = [
     {
         "name": "Danny",
         "link": "dannyblond",
-        "pfp": "https://pbs.twimg.com/profile_images/1783827680095301632/VkCG4ErW_400x400.jpg",
+        "pfp": "1783827680095301632/VkCG4ErW_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white", "18yo"],
             "kinks": [],
@@ -254,7 +254,7 @@ const links = [
     {
         "name": "🔞 Dirty Fox Paws 🔞",
         "link": "foxwaterr",
-        "pfp": "https://pbs.twimg.com/profile_images/1576809288529580034/96KlR-hc_400x400.jpg",
+        "pfp": "1576809288529580034/96KlR-hc_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white", "21yo", "furry", "furries"],
             "kinks": ["Furries"],
@@ -267,7 +267,7 @@ const links = [
     {
         "name": "Pup Maestro",
         "link": "pianotwink",
-        "pfp": "https://pbs.twimg.com/profile_images/1823779465895272448/hLSjMIzw_400x400.jpg",
+        "pfp": "1823779465895272448/hLSjMIzw_400x400.jpg",
         "details": {
             "tags": ["gay", "twink", "white", "pups"],
             "kinks": ["Pups"],
@@ -280,7 +280,7 @@ const links = [
     {
         "name": "ChrisWTheStar",
         "link": "ElsaGermaineRiley",
-        "pfp": "https://preview.redd.it/really-wanting-to-change-my-style-what-kind-of-clothes-v0-b8xq3ilkewid1.jpeg?auto=webp&s=08f75ab5944ce1c6c0a2d56f1fd473642429cd16",
+        "pfp": "really-wanting-to-change-my-style-what-kind-of-clothes-v0-b8xq3ilkewid1.jpeg?auto=webp&s=08f75ab5944ce1c6c0a2d56f1fd473642429cd16",
         "details": {
             "tags": ["gay", "twunk", "white", "wrestling", "hairy", "feet"],
             "kinks": ["Feet"],
@@ -293,7 +293,7 @@ const links = [
     {
         "name": "Daniel/Dantebigboi",
         "link": "Fantastic-Potato-324",
-        "pfp": "https://preview.redd.it/explore-my-musky-scent-its-intoxicating-v0-jiix8w9jfzhd1.jpeg?width=1080&crop=smart&auto=webp&s=7bc8c96c56724e47f2ac98e89634b846269527a8",
+        "pfp": "explore-my-musky-scent-its-intoxicating-v0-jiix8w9jfzhd1.jpeg?width=1080&crop=smart&auto=webp&s=7bc8c96c56724e47f2ac98e89634b846269527a8",
         "details": {
             "tags": ["gay", "twink", "white"],
             "kinks": [],

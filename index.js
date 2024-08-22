@@ -96,7 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function openCanvas(link) {
         const linkPrefix = link.details.source === 'reddit' ? 'u/' : '@';
         const urlPrefix = link.details.source === 'reddit' ? 'https://www.reddit.com/user/' : 'https://x.com/';
+        const pfpPrefix = link.details.source === 'reddit' ? 'https://preview.redd.it/' : 'https://pbs.twimg.com/profile_images/'
         const fullUrl = urlPrefix + link.link;
+        const fullPfp = pfpPrefix + link.pfp;
 
         document.getElementById('link_canvas_label').textContent = `Profile of ${link.name}`;
         document.querySelector('.offcanvas-body').innerHTML = `
@@ -106,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="col">
                             <div class="d-flex align-items-center">
                                 <div class="me-3">
-                                    <img alt="Profile Picture" class="avatar rounded-1" src="${link.pfp}">
+                                    <img alt="Profile Picture" class="avatar rounded-1" src="${fullPfp}">
                                 </div>
                                 <div class="flex-1">
                                     <a href="#" class="d-block font-semibold text-sm text-heading text-primary-hover">${link.name}</a>
