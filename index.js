@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="card-body pb-5">
                         <div class="d-flex align-items-center">
                             <div class="me-3">
-                                <img alt="Profile Picture" class="avatar rounded-1" src="${link.icon}">
+                                <img alt="Profile Picture" class="avatar rounded-1" src="${fullicon}">
                             </div>
                             <div class="flex-1">
                                 <a href="#" class="d-block font-semibold text-sm text-heading text-primary-hover">${link.name}</a>
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openCanvas(link) {
         const linkPrefix = link.info.source === 'reddit' ? 'u/' : '@';
         const urlPrefix = link.info.source === 'reddit' ? 'https://www.reddit.com/user/' : 'https://x.com/';
-        const iconPrefix = link.info.source === 'reddit' ? 'https://preview.redd.it/' : 'https://pbs.twimg.com/profile_images/'
+        const iconPrefix = link.info.source === 'reddit' ? 'https://preview.redd.it/' : 'https://pbs.twimg.com/profile_images/';
         const fullUrl = urlPrefix + link.link;
         const fullicon = iconPrefix + link.icon;
 
