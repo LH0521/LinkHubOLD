@@ -5,6 +5,32 @@
 
 const links = [
     {
+        "name": "melo",
+        "link": "jmelo699",
+        "icon": "1818042545735118849/3PBQqWt1_400x400.jpg",
+        "info": {
+            "tags": ["gay", "twink", "white", "18yo"],
+            "kinks": [],
+            "sexuality": "Gay",
+            "body": "Twink",
+            "race": "White",
+            "source": "twitter"
+        }
+    },
+    {
+        "name": "Leo",
+        "link": "Leobf18",
+        "icon": "1707741001626824705/WulxJjMy_400x400.jpg",
+        "info": {
+            "tags": ["gay", "twink", "white"],
+            "kinks": [],
+            "sexuality": "Gay",
+            "body": "Twink",
+            "race": "White",
+            "source": "twitter"
+        }
+    },
+    {
         "name": "PaulBdx🏳️‍🌈😈",
         "link": "PaulBdx",
         "icon": "1575752815623954432/64erQisp_400x400.jpg",
