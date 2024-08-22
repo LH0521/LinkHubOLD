@@ -47,8 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayResults(filteredlinks) {
-        const iconPrefix = link.info.source === 'reddit' ? 'https://preview.redd.it/' : 'https://pbs.twimg.com/profile_images/';
-        const fullicon = iconPrefix + link.icon;
         const resultsContainer = document.getElementById('results-container');
         resultsContainer.innerHTML = '';
 
@@ -58,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         filteredlinks.forEach(({ originalIndex, ...link }) => {
+            const iconPrefix = link.info.source === 'reddit' ? 'https://preview.redd.it/' : 'https://pbs.twimg.com/profile_images/';
+            const fullicon = iconPrefix + link.icon;
             const linkPrefix = link.info.source === 'reddit' ? 'u/' : '@';
             const linkElement = document.createElement('div');
             linkElement.classList.add('col-lg-4', 'col-sm-6');
