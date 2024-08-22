@@ -26,27 +26,42 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.entries(filterElements).map(([key, elements]) => [key, getSelectedValues(elements)])
         );
     
+        console.log("Selected Filters:", selectedFilters); // Debugging
+    
         const filteredlinks = links
             .map((link, originalIndex) => ({ link, originalIndex }))
             .filter(({ link }) => {
                 const tagsAsString = link.info.tags.join(' ').toLowerCase();
                 const matchesSearch = [link.name, link.link, tagsAsString].some(term => term.toLowerCase().includes(searchTerm));
                 
-                // Correctly handle array matching for filters like "kinks"
+                console.log("Checking link:", link.name); // Debugging
+    
                 const matchesFilters = Object.entries(selectedFilters).every(([key, selectedValues]) => {
+                    console.log(`Filtering by ${key} with values:`, selectedValues); // Debugging
+    
                     if (!selectedValues.length) return true;
     
                     const linkValue = link.info[key];
+                    console.log(`Link value for ${key}:`, linkValue); // Debugging
+    
                     if (Array.isArray(linkValue)) {
-                        return selectedValues.some(val => linkValue.includes(val));
+                        const arrayMatch = selectedValues.some(val => linkValue.includes(val));
+                        console.log(`Array match for ${key}:`, arrayMatch); // Debugging
+                        return arrayMatch;
                     } else {
-                        return selectedValues.includes(linkValue);
+                        const singleMatch = selectedValues.includes(linkValue);
+                        console.log(`Single value match for ${key}:`, singleMatch); // Debugging
+                        return singleMatch;
                     }
                 });
+    
+                console.log(`Link ${link.name} matches filters:`, matchesFilters); // Debugging
     
                 return matchesSearch && matchesFilters;
             })
             .map(({ link, originalIndex }) => ({ ...link, originalIndex }));
+    
+        console.log("Filtered Links:", filteredlinks); // Debugging
     
         displayResults(filteredlinks);
     }
