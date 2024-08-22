@@ -25,21 +25,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedFilters = Object.fromEntries(
             Object.entries(filterElements).map(([key, elements]) => [key, getSelectedValues(elements)])
         );
-
+    
         const filteredlinks = links
             .map((link, originalIndex) => ({ link, originalIndex }))
             .filter(({ link }) => {
                 const tagsAsString = link.info.tags.join(' ').toLowerCase();
                 const matchesSearch = [link.name, link.link, tagsAsString].some(term => term.toLowerCase().includes(searchTerm));
-                const matchesFilters = Object.entries(selectedFilters).every(([key, selectedValues]) =>
-                    !selectedValues.length ||
-                    (Array.isArray(link.info[key]) ? selectedValues.some(val => link.info[key].includes(val)) : selectedValues.includes(link.info[key]))
-                );
-
+                
+                // Correctly handle array matching for filters like "kinks"
+                const matchesFilters = Object.entries(selectedFilters).every(([key, selectedValues]) => {
+                    if (!selectedValues.length) return true;
+    
+                    const linkValue = link.info[key];
+                    if (Array.isArray(linkValue)) {
+                        return selectedValues.some(val => linkValue.includes(val));
+                    } else {
+                        return selectedValues.includes(linkValue);
+                    }
+                });
+    
                 return matchesSearch && matchesFilters;
             })
             .map(({ link, originalIndex }) => ({ ...link, originalIndex }));
-
+    
         displayResults(filteredlinks);
     }
 
