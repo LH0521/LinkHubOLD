@@ -5,94 +5,78 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search');
-    const filterElements = {
-        source: document.querySelectorAll('input[name="filter-version"]'),
-        body: document.querySelectorAll('input[name="filter-body"]'),
-        race: document.querySelectorAll('input[name="filter-race"]'),
-        kink: document.querySelectorAll('input[name="filter-kink"]'),
-        sexuality: document.querySelectorAll('input[name="sexuality-filter"]'),
+    const filters = {
+        source: 'filter-version',
+        body: 'filter-body',
+        race: 'filter-race',
+        kink: 'filter-kink',
+        sexuality: 'sexuality-filter'
     };
+
+    const filterElements = Object.fromEntries(
+        Object.entries(filters).map(([key, name]) => [key, document.querySelectorAll(`input[name="${name}"]`)])
+    );
+
+    const getSelectedValues = (elements) =>
+        Array.from(elements).filter(el => el.checked).map(el => el.value);
 
     function filterlinks() {
         const searchTerm = searchInput.value.toLowerCase();
-        const selectedSources = Array.from(filterElements.source).filter(el => el.checked).map(el => el.value);
-        const selectedBody = Array.from(filterElements.body).filter(el => el.checked).map(el => el.value);
-        const selectedRace = Array.from(filterElements.race).filter(el => el.checked).map(el => el.value);
-        const selectedKink = Array.from(filterElements.kink).filter(el => el.checked).map(el => el.value);
-        const selectedSexuality = Array.from(filterElements.sexuality).filter(el => el.checked).map(el => el.value);
+        const selectedFilters = Object.fromEntries(
+            Object.entries(filterElements).map(([key, elements]) => [key, getSelectedValues(elements)])
+        );
 
         const filteredlinks = links
             .map((link, originalIndex) => ({ link, originalIndex }))
             .filter(({ link }) => {
                 const tagsAsString = link.info.tags.join(' ').toLowerCase();
-                const matchesSearch =
-                    link.name.toLowerCase().includes(searchTerm) ||
-                    link.link.toLowerCase().includes(searchTerm) ||
-                    tagsAsString.includes(searchTerm);
+                const matchesSearch = [link.name, link.link, tagsAsString].some(term => term.toLowerCase().includes(searchTerm));
+                const matchesFilters = Object.entries(selectedFilters).every(([key, selectedValues]) =>
+                    !selectedValues.length ||
+                    (Array.isArray(link.info[key]) ? selectedValues.some(val => link.info[key].includes(val)) : selectedValues.includes(link.info[key]))
+                );
 
-                const matchesSource = !selectedSources.length || selectedSources.includes(link.info.source);
-                const matchesBody = !selectedBody.length || selectedBody.includes(link.info.body);
-                const matchesRace = !selectedRace.length || selectedRace.includes(link.info.race);
-                const matchesKink = !selectedKink.length || selectedKink.some(kink => link.info.kinks.includes(kink));
-                const matchesSexuality = !selectedSexuality.length || selectedSexuality.includes(link.info.sexuality);
-
-                return matchesSearch && matchesSource && matchesBody && matchesRace && matchesKink && matchesSexuality;
+                return matchesSearch && matchesFilters;
             })
-            .map(({ link, originalIndex }) => ({
-                ...link,
-                originalIndex
-            }));
+            .map(({ link, originalIndex }) => ({ ...link, originalIndex }));
 
         displayResults(filteredlinks);
     }
 
     function displayResults(filteredlinks) {
         const resultsContainer = document.getElementById('results-container');
-        resultsContainer.innerHTML = '';
-
-        if (filteredlinks.length === 0) {
-            resultsContainer.innerHTML = '<p>No results found.</p>';
-            return;
-        }
-
-        filteredlinks.forEach(({ originalIndex, ...link }) => {
+        resultsContainer.innerHTML = filteredlinks.length ? filteredlinks.map(({ originalIndex, ...link }) => {
             const iconPrefix = link.info.source === 'reddit' ? 'https://preview.redd.it/' : 'https://pbs.twimg.com/profile_images/';
             const fullicon = iconPrefix + link.icon;
             const linkPrefix = link.info.source === 'reddit' ? 'u/' : '@';
-            const linkElement = document.createElement('div');
-            linkElement.classList.add('col-lg-4', 'col-sm-6');
 
-            linkElement.innerHTML = `
-                <div class="card shadow-4-hover">
-                    <div class="card-body pb-5">
-                        <div class="d-flex align-items-center">
-                            <div class="me-3">
-                                <img alt="Profile Picture" class="avatar rounded-1" src="${fullicon}">
-                            </div>
-                            <div class="flex-1">
-                                <a href="#" class="d-block font-semibold text-sm text-heading text-primary-hover">${link.name}</a>
-                                <div class="text-xs text-muted line-clamp-1">${linkPrefix}${link.link}</div>
-                            </div>
-                            <div class="text-end">
-                                <button type="button" class="btn btn-sm btn-neutral rounded-pill view-button" data-index="${originalIndex}">
-                                    <i class="bi bi-folder2-open me-1"></i>
-                                    <span>View</span>
-                                </button>
+            return `
+                <div class="col-lg-4 col-sm-6">
+                    <div class="card shadow-4-hover">
+                        <div class="card-body pb-5">
+                            <div class="d-flex align-items-center">
+                                <div class="me-3">
+                                    <img alt="Profile Picture" class="avatar rounded-1" src="${fullicon}">
+                                </div>
+                                <div class="flex-1">
+                                    <a href="#" class="d-block font-semibold text-sm text-heading text-primary-hover">${link.name}</a>
+                                    <div class="text-xs text-muted line-clamp-1">${linkPrefix}${link.link}</div>
+                                </div>
+                                <div class="text-end">
+                                    <button type="button" class="btn btn-sm btn-neutral rounded-pill view-button" data-index="${originalIndex}">
+                                        <i class="bi bi-folder2-open me-1"></i>
+                                        <span>View</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             `;
+        }).join('') : '<p>No results found.</p>';
 
-            resultsContainer.appendChild(linkElement);
-        });
-
-        document.querySelectorAll('.view-button').forEach(button => {
-            button.addEventListener('click', function () {
-                const index = this.getAttribute('data-index');
-                openCanvas(links[index]);
-            });
-        });
+        document.querySelectorAll('.view-button').forEach(button =>
+            button.addEventListener('click', () => openCanvas(links[button.getAttribute('data-index')])));
     }
 
     function openCanvas(link) {
@@ -124,22 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                             <hr class="my-7">
-                            <!--
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col-4">
-                                        <span class="d-block h6 text-heading mb-0" id="link-rating">5.0</span>
-                                        <span class="d-block text-sm text-muted">Rating</span>
-                                    </div>
-                                    <div class="col-4">
-                                        <span class="d-block h6 text-heading mb-0" id="link-saves">0</span>
-                                        <span class="d-block text-sm text-muted">Saves</span>
-                                    </div>
-                                    <div class="col-4">
-                                        <span class="d-block h6 text-heading mb-0" id="link-opens">0</span>
-                                        <span class="d-block text-sm text-muted">Opens</span>
-                                    </div>
-                                </div>
-                            -->
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-4">
                                     <span class="d-block h6 text-heading mb-0">${link.info.sexuality}</span>
@@ -161,75 +129,19 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card mb-3">
                 <div class="card-body">
                     <span class="d-block h6 text-heading mb-0">Kinks</span>
-                    <span class="d-block text-sm text-muted">${link.info.kinks.length > 0 ? link.info.kinks.join(', ') : 'N/A'}</span>
+                    <span class="d-block text-sm text-muted">${link.info.kinks.length ? link.info.kinks.join(', ') : 'N/A'}</span>
                     <hr class="my-3">
                     <span class="d-block h6 text-heading mb-0">Tags</span>
-                    <span class="d-block text-sm text-muted">${link.info.tags.length > 0 ? link.info.tags.join(', ') : 'N/A'}</span>
+                    <span class="d-block text-sm text-muted">${link.info.tags.length ? link.info.tags.join(', ') : 'N/A'}</span>
                 </div>
             </div>
-            <!--
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <span class="d-block h6 text-heading mb-0">Give ${link.name} a rating</span>
-                                <span class="d-block text-sm text-muted">0 Votes | Your Vote <b>5</b></span>
-                            </div>
-                            <button class="btn btn-sm btn-neutral ms-auto">Information</button>
-                        </div>
-                        <hr class="my-3">
-                        <div class="rating">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label title="Excellent!" for="star5">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                                <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
-                                </svg>
-                            </label>
-                            <input value="4" name="rate" id="star4" type="radio" />
-                            <label title="Great!" for="star4">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                                <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
-                                </svg>
-                            </label>
-                            <input value="3" name="rate" id="star3" type="radio" />
-                            <label title="Good" for="star3">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                                <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
-                                </svg>
-                            </label>
-                            <input value="2" name="rate" id="star2" type="radio" />
-                            <label title="Okay" for="star2">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                                <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
-                                </svg>
-                            </label>
-                            <input value="1" name="rate" id="star1" type="radio" />
-                            <label title="Bad" for="star1">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                                <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
-                                </svg>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            -->
         `;
 
-        const linkCanvas = new bootstrap.Offcanvas(document.getElementById('link_canvas'));
-        linkCanvas.show();
+        new bootstrap.Offcanvas(document.getElementById('link_canvas')).show();
     }
 
-    const initialLinks = links.map((link, originalIndex) => ({
-        ...link,
-        originalIndex
-    }));
-
-    displayResults(initialLinks);
+    displayResults(links.map((link, originalIndex) => ({ ...link, originalIndex })));
 
     searchInput.addEventListener('input', filterlinks);
-    filterElements.source.forEach(el => el.addEventListener('change', filterlinks));
-    filterElements.body.forEach(el => el.addEventListener('change', filterlinks));
-    filterElements.race.forEach(el => el.addEventListener('change', filterlinks));
-    filterElements.kink.forEach(el => el.addEventListener('change', filterlinks));
-    filterElements.sexuality.forEach(el => el.addEventListener('change', filterlinks));
+    Object.values(filterElements).forEach(elements => elements.forEach(el => el.addEventListener('change', filterlinks)));
 });
