@@ -3,7 +3,43 @@
     Unauthorized editing, removal, updating, adding, duplicating, selling, or reusing of this code is strictly prohibited.
 */
 
+const { links } = dataModule;
+
 document.addEventListener('DOMContentLoaded', () => {
+    function getFilterOptions(category) {
+        const options = {
+            "source": [
+                { label: "Twitter", icon: "x-logo", value: "twitter" },
+                { label: "Reddit", icon: "reddit-logo", value: "reddit" }
+            ],
+            "body": [
+                { label: "Twink", icon: "number-square-one", value: "twink" },
+                { label: "Twunk", icon: "number-square-two", value: "twunk" },
+                { label: "Jock", icon: "number-square-three", value: "jock" }
+            ],
+            "race": [
+                { label: "White", icon: "number-circle-one", value: "white" },
+                { label: "Latino", icon: "number-circle-two", value: "latino" },
+                { label: "Black", icon: "number-circle-three", value: "black" },
+                { label: "Asian", icon: "number-circle-four", value: "asian" }
+            ],
+            "kinks / fetishes": [
+                { label: "Exhibition", icon: "mountains", value: "exhibition" },
+                { label: "Feet", icon: "hand", value: "feet" },
+                { label: "Pups", icon: "paw-print", value: "pups" },
+                { label: "Furries", icon: "dog", value: "furries" },
+                { label: "Watersports", icon: "drop", value: "watersports" },
+                { label: "Bondage", icon: "lasso", value: "bondage" }
+            ],
+            "sexuality": [
+                { label: "Straight", icon: "number-square-one", value: "straight" },
+                { label: "Gay", icon: "number-square-two", value: "gay" },
+                { label: "Lesbian", icon: "number-square-three", value: "lesbian" }
+            ]
+        };
+        return options[category] || [];
+    }
+
     const searchInput = document.getElementById('search');
     const filters = {
         source: 'filter-version',
