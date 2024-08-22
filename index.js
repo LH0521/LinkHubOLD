@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayResults(filteredlinks) {
+        const iconPrefix = link.info.source === 'reddit' ? 'https://preview.redd.it/' : 'https://pbs.twimg.com/profile_images/';
+        const fullicon = iconPrefix + link.icon;
         const resultsContainer = document.getElementById('results-container');
         resultsContainer.innerHTML = '';
 
